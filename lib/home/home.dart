@@ -53,7 +53,10 @@ class Home extends StatelessWidget {
               SizedBox(height: 5.0),
               CustomListTile(Icons.person, 'Profile', () => {}),
               SizedBox(height: 5.0),
-              CustomListTile(Icons.notifications, 'Notification', () => {}),
+              CustomListTile(Icons.notifications, 'Notification', () {
+                Navigator.of(context).pop();                                 //nav to the page       
+                Navigator.of(context).pushNamed("/b");
+              }),
               SizedBox(height: 5.0),
               CustomListTile(Icons.create_new_folder, 'Leave Form', () {
                 Navigator.of(context).pop();                                 //nav to the page       

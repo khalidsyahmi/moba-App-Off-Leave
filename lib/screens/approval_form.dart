@@ -30,7 +30,7 @@ class _ApprovalState extends State<Approval> {
         ),
 
         body: Container(
-          child: FilledList(),
+          child: FilledList()
 
         ),
 

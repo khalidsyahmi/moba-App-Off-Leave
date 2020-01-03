@@ -6,6 +6,7 @@ import 'note_tile.dart';
 
 
 class FilledList extends StatefulWidget {
+
   @override
   _FilledListState createState() => _FilledListState();
 }
