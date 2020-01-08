@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:offleaveppkt/services/authenticate.dart';
-import 'package:offleaveppkt/deConstants.dart';
+import 'package:offleaveppkt/services/superviser_auth.dart';
+import 'package:offleaveppkt/shared/deConstants.dart';
 import 'package:offleaveppkt/shared/loading.dart';
 
  class SVRegister extends StatefulWidget {

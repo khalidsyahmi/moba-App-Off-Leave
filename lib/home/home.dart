@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:offleaveppkt/home/setting_form.dart';
+// import 'package:offleaveppkt/screens/task_creator.dart';
+import 'package:offleaveppkt/screens/task_creator/task_main.dart';
 import 'package:offleaveppkt/services/authenticate.dart'; // lesson 9
 import 'package:offleaveppkt/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:offleaveppkt/home/leave_list.dart';
 import 'package:offleaveppkt/model/leave.dart';
-
+import 'package:offleaveppkt/screens/bottom_sheet/leave_list.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -24,79 +25,90 @@ class Home extends StatelessWidget {
 
     return StreamProvider<List<Leave>>.value(
       value: DatabaseService().leave,
-      child: Scaffold(
-        backgroundColor: Colors.pink[50],
-        //drawer here5
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(                   
-                decoration: BoxDecoration(      // header custom
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      Colors.deepOrange,
-                      Colors.deepPurpleAccent
-                    ])
-                ),
-                child: Container(
-                  child: Column(children: <Widget>[
-                    Material(
-                      child: Image.asset('assets/logo_usm.png', width: 250, height: 95),
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('PPKT Form App',style: TextStyle(color: Colors.white, fontSize: 20.0 ),),
-                    )
-                  ],
+      child: SafeArea(
+              child: Scaffold(
+          backgroundColor: Colors.pink[50],
+          //drawer here5
+          drawer: Drawer(
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(                   
+                  decoration: BoxDecoration(      // header custom
+                    gradient: LinearGradient(
+                      colors: <Color>[
+                        Colors.deepOrange,
+                        Colors.deepPurpleAccent
+                      ])
                   ),
-                  )),
-              SizedBox(height: 5.0),
-              CustomListTile(Icons.person, 'Profile', () => {}),
-              SizedBox(height: 5.0),
-              CustomListTile(Icons.notifications, 'Notification', () {
-                Navigator.of(context).pop();                                 //nav to the page       
-                Navigator.of(context).pushNamed("/b");
-              }),
-              SizedBox(height: 5.0),
-              CustomListTile(Icons.create_new_folder, 'Leave Form', () {
-                Navigator.of(context).pop();                                 //nav to the page       
-                Navigator.of(context).pushNamed("/a");
-              },
+                  child: Container(
+                    child: Column(children: <Widget>[
+                      Material(
+                        child: Image.asset('assets/logo_usm.png', width: 250, height: 95),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('PPKT Form App',style: TextStyle(color: Colors.white, fontSize: 20.0 ),),
+                      )
+                    ],
+                    ),
+                    )),
+                SizedBox(height: 5.0),
+                CustomListTile(Icons.person, 'Profile', () => {}),
+                SizedBox(height: 5.0),
+                SizedBox(height: 5.0),
+                CustomListTile(Icons.dashboard, 'Task Creator', () {
+                  // Navigator.of(context).pop();                                 //nav to the page       
+                  // Navigator.of(context).pushNamed("/c");
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(
+                      builder: (context) => MyHomePage('Create Task')
+                    ));
+                },),
+                CustomListTile(Icons.notifications, 'Notification', () {
+                  Navigator.of(context).pop();                                 //nav to the page       
+                  Navigator.of(context).pushNamed("/b");
+                }),
+                SizedBox(height: 5.0),
+                CustomListTile(Icons.create_new_folder, 'Leave Form', () {
+                  Navigator.of(context).pop();                                 //nav to the page       
+                  Navigator.of(context).pushNamed("/a");
+                },),
 
+              ],
+            )
+          ), 
+
+          appBar: AppBar(
+            title: Text('Home'),
+            backgroundColor: Colors.pink[400],
+            elevation: 0.0,
+            actions: <Widget>[
+               // to show a moving sheet
+              FlatButton.icon(
+                icon: Icon(Icons.settings),
+                label: Text('settings'),
+                onPressed: () => _showSettingsPanel(),
               ),
+              FlatButton.icon(
+                icon: Icon(Icons.person),
+                label: Text('Logout'),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+              ),           
             ],
-          )
-        ), 
-
-        appBar: AppBar(
-          title: Text('Home'),
-          backgroundColor: Colors.pink[400],
-          elevation: 0.0,
-          actions: <Widget>[
-             // to show a moving sheet
-            FlatButton.icon(
-              icon: Icon(Icons.settings),
-              label: Text('settings'),
-              onPressed: () => _showSettingsPanel(),
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('Logout'),
-              onPressed: () async {
-                await _auth.signOut();
-              },
-            ),           
-          ],
-        ),
-
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-             image: AssetImage('assets/google-pixel-3.jpg'),
-             fit: BoxFit.cover,
-             )
           ),
-          child: LeaveList()
+
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+               image: AssetImage('assets/google-pixel-3.jpg'),
+               fit: BoxFit.cover,
+               )
+            ),
+            child: LeaveList()
+          ),
         ),
       ),
     );

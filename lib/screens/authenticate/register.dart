@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:offleaveppkt/screens/authenticate/sv_register.dart';
 import 'package:offleaveppkt/services/authenticate.dart';
-import 'package:offleaveppkt/deConstants.dart';
+import 'package:offleaveppkt/shared/deConstants.dart';
 import 'package:offleaveppkt/shared/loading.dart';
 
  class Register extends StatefulWidget {
@@ -32,6 +33,15 @@ import 'package:offleaveppkt/shared/loading.dart';
         elevation: 0.0,
         title: Text('Sign up to PPKT app'),
          actions: <Widget>[
+        //   FlatButton.icon(
+        //   icon: Icon(Icons.person),
+        //   label: Text('Sign Up SV'),  // toggle signin page
+        //   onPressed: () {
+        //     Navigator.push(context, new MaterialPageRoute(
+        //       builder: (context)=> SVRegister()
+        //     ));
+        //   }
+        // ),
           FlatButton.icon(
             icon: Icon(Icons.person),
             label: Text('Sign In'),  // toggle signin page
@@ -41,6 +51,7 @@ import 'package:offleaveppkt/shared/loading.dart';
           )
         ],
       ),
+     
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(

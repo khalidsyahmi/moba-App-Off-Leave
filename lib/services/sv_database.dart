@@ -21,14 +21,14 @@ class DatabaseService4 {
   }
 
   //Approval list from snapshot of approval collection 
-  // List<Supervisor> _supervisorListFromSnapshot(QuerySnapshot snapshot){
-  //   return snapshot.documents.map((doc){
-  //     return Approval(
-  //       svid: doc.data['svid'] ?? '-',
+  List<Supervisor> _supervisorListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
+      return Supervisor(
+        svid: doc.data['svid'] ?? '-',
 
-  //     );
-  //   }).toList();
-  // }
+      );
+    }).toList();
+  }
 
   //svuser data from snapshots
   Supervisor _supervisorFromSnapShot(DocumentSnapshot snapshot) {
@@ -39,13 +39,13 @@ class DatabaseService4 {
   }
 
   //get Supervisor stream
-  // Stream<List<Supervisor>> get supervisor {
-  //   return supervisorCollection.snapshots()
-  //   .map(_leaveListFromSnapshot);
-  // }
+  Stream<List<Supervisor>> get supervisor {
+    return supervisorCollection.snapshots()
+    .map(_supervisorListFromSnapshot);
+  }
 
   //get user doc stream
-  Stream<Supervisor> get supervisor {
+  Stream<Supervisor> get user {
     return supervisorCollection.document(svid).snapshots()
     .map(_supervisorFromSnapShot);
   }

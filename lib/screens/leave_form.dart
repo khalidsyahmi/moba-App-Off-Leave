@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:offleaveppkt/deConstants.dart';
+import 'package:offleaveppkt/shared/deConstants.dart';
 import 'package:offleaveppkt/model/user.dart';
 import 'package:provider/provider.dart';
 import 'package:offleaveppkt/services/database.dart';

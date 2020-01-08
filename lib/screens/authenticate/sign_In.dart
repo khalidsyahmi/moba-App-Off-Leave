@@ -1,7 +1,7 @@
 //import 'package:offleaveppkt/screens/authenticate/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:offleaveppkt/services/authenticate.dart';
-import 'package:offleaveppkt/deConstants.dart';
+import 'package:offleaveppkt/shared/deConstants.dart';
 import 'package:offleaveppkt/shared/loading.dart'; //Loading stuff
 
 class SignIn extends StatefulWidget {

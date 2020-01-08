@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:offleaveppkt/model/leave.dart';
-import 'package:offleaveppkt/home/leave_tile.dart';
+import 'package:offleaveppkt/screens/bottom_sheet/leave_tile.dart';
 
 class LeaveList extends StatefulWidget {
   @override
