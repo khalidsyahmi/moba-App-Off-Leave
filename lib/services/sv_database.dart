@@ -24,7 +24,10 @@ class DatabaseService4 {
   List<Supervisor> _supervisorListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return Supervisor(
-        svid: doc.data['svid'] ?? '-',
+        name: doc.data['name'] ?? '-',
+        date: doc.data['date'] ?? '-',
+        time: doc.data['time'] ?? '0',
+
 
       );
     }).toList();
@@ -34,7 +37,9 @@ class DatabaseService4 {
   Supervisor _supervisorFromSnapShot(DocumentSnapshot snapshot) {
     return Supervisor(
       svid: svid,
-
+      name: snapshot.data['name'],
+      date: snapshot.data['date'],
+      time: snapshot.data['time']
     );
   }
 

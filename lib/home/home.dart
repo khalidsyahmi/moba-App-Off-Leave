@@ -53,8 +53,10 @@ class Home extends StatelessWidget {
                     ),
                     )),
                 SizedBox(height: 5.0),
-                CustomListTile(Icons.person, 'Profile', () => {}),
-                SizedBox(height: 5.0),
+                CustomListTile(Icons.person, 'Profile', () {
+                  Navigator.of(context).pop();                                 //nav to the page       
+                  Navigator.of(context).pushNamed("/d");
+                }),
                 SizedBox(height: 5.0),
                 CustomListTile(Icons.dashboard, 'Task Creator', () {
                   // Navigator.of(context).pop();                                 //nav to the page       

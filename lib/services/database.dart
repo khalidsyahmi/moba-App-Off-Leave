@@ -12,7 +12,7 @@ class DatabaseService {
   final CollectionReference leaveCollection =
       Firestore.instance.collection('leave');
 
-//ref docs and updatedata
+//ref docs and updatedata from existing data + update button
   Future updateUserData(String reason, String date, int time) async {
     return await leaveCollection.document(uid).setData({
       //map
@@ -22,7 +22,7 @@ class DatabaseService {
     });
   }
 
-  //Leave list from snapshot
+  //Leave.dart list from snapshot
   List<Leave> _leaveListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return Leave(
@@ -33,7 +33,7 @@ class DatabaseService {
     }).toList();
   }
 
-  //user data from snapshots
+  //userdata.dart from snapshots
   UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
     return UserData(
       uid: uid,
@@ -71,7 +71,7 @@ class DatabaseService2 {
 
 //ref docs and updatedata  //update leaveForm
 
-    Future updateUserData(String motive, String date2, String time2) async {
+  Future updateUserData(String motive, String date2, String time2) async {
     return await leaveFormCollection.document(uid).setData({
 
       'motive': motive,

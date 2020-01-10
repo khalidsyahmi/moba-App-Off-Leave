@@ -6,11 +6,14 @@ class User {
 }
 
 class UserData {
+
+  //leave
   final String uid;
   final String reason;
   final String date;
   final int time;
 
+  //leaveData
   final String motive;
   final String date2;
   final String time2;

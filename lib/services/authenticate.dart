@@ -8,7 +8,7 @@ class AuthService {
 
   // create user obj based on firebase user
   User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+    return user != null ? User(uid: user.uid) : null; // if not null return uid from User.dart
   }
 
   // auth change user stream
@@ -49,15 +49,13 @@ class AuthService {
       FirebaseUser user = result.user;
 
           //create new doc for user with the uid
-      await DatabaseService(uid: user.uid).updateUserData( 'hardcoded bruh', '0', 100 );
+      await DatabaseService(uid: user.uid).updateUserData( 'Welcome new blood', 'Regular user', 10 );
       return _userFromFirebaseUser(user);
     } catch(e){
       print(e.toString());
       return null;
     }
   }
-
-  
 
   // sign out
   Future signOut() async {

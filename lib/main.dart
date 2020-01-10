@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:offleaveppkt/screens/notification_note.dart';
 import 'package:offleaveppkt/screens/leave_form.dart';
+import 'package:offleaveppkt/screens/profile_page.dart';
 // import 'package:offleaveppkt/screens/task_creator.dart';
 import 'package:offleaveppkt/services/authenticate.dart';
 import 'package:offleaveppkt/wrapper.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         "/a": (BuildContext context) => new LeaveForm("title"),
         "/b": (BuildContext context) => new Approval("Notification"),
         // "/c": (BuildContext context) => new TaskCreator("Create Task"),
+        "/d": (BuildContext context) => new ProfilePage(),
       },
       ),
     );

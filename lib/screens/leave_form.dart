@@ -7,7 +7,7 @@ import 'package:offleaveppkt/services/database.dart';
 
 class LeaveForm extends StatefulWidget {
 
-final String title;
+final String title;  //route param
 LeaveForm(this.title);
 
   @override
@@ -170,26 +170,33 @@ class _LeaveFormState extends State<LeaveForm> {
                                   ),
                                   onPressed: () async {
 
-                                    if ( _timeOfDayB.hour - _timeOfDayA.hour <= 2.00 ){
+                                    if ( _timeOfDayB.hour - _timeOfDayA.hour <= 2.00 &&  _timeOfDayB.hour - _timeOfDayA.hour > 2.00 ){
                                       _currentTime2 = _timeOfDayA.toString();
                                       // _currentTime2 = _timeOfDayB.toString();
 
                                       if (_formKey.currentState.validate()) {
                                       await DatabaseService2(uid: user.uid).updateUserData(
-                                        _currentMotive ?? userData.motive,
+                                        _currentMotive ?? userData.motive,  
                                         _currentDate2 ?? userData.date2,
                                         _currentTime2 ?? userData.time2
+
+                                        //remove .variables to see if it increments or not
+                                        // _currentMotive ?? userData,  
+                                        // _currentDate2 ?? userData,
+                                        // _currentTime2 ?? userData
+
+                                        //diddnt work/ how to increment data with the same uid ?
                                       );
                                 
                                       print(_currentMotive);
                                       print(_currentDate2);
                                       print(_currentTime2);
 
-                                      leaveFill(context);
+                                      leaveFill(context); //success
                                     }
 
                                     } else {
-                                      notFilled(context);
+                                      notFilled(context); //failed
                                     }
                                       
                                   }),
