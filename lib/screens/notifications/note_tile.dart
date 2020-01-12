@@ -1,23 +1,21 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:offleaveppkt/model/leaveData.dart';
-import 'package:offleaveppkt/home/setting_form.dart';
+// import 'package:offleaveppkt/screens/notifications/note_details_page.dart';
+// import 'package:offleaveppkt/home/setting_form.dart';
+// import 'package:offleaveppkt/model/profile.dart';
 
 class NoteTile extends StatelessWidget {
 
   final LeaveData leaveData;
   NoteTile({ this.leaveData });
 
+
   @override
   Widget build(BuildContext context) {
 
-    void _showApprovalSheet(){
-      showModalBottomSheet(context: context, builder: (context){
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: SettingsForm(),
-        );
-      });
-    }
+    // final note = LeaveData.fromTileSnapshot(context);
+    // final noteType = LeaveData.types();
 
        return Padding(
       padding: EdgeInsets.only(top: 8.0),
@@ -35,7 +33,9 @@ class NoteTile extends StatelessWidget {
           enabled: true,
           title: Text(leaveData.motive),
           subtitle: Text('Leave date: ${leaveData.date2} at time: ${leaveData.time2}'),
-          onTap: () => _showApprovalSheet(),
+          onTap: () => {}
+          
+          // _showApprovalSheet(),
         ),
       ),
     );

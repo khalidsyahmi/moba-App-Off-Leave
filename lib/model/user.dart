@@ -21,11 +21,12 @@ class UserData {
   //profile
   final String name;
   final String color;
+  final String status;
 
   UserData({ 
   this.uid, this.reason, this.date, this.time, 
   this.motive, this.date2, this.time2,
-  this.color, this.name 
+  this.color, this.name, this.status
   
   });
 }

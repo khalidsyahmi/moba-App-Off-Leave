@@ -7,6 +7,11 @@ class Approval {
   //FK SVid
   final String memo;
 
-  Approval({ this.appId, this.approvals, this.status, this.memo });
+  Approval({ 
+    this.appId, 
+    this.approvals, 
+    this.status, 
+    this.memo });
+
 
 }
