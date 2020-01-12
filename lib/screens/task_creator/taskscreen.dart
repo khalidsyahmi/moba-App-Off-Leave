@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offleaveppkt/services/task_firestoreservice.dart';
 import 'package:offleaveppkt/model/task.dart';
 
 class TaskScreen extends StatefulWidget {
-  final Task task;
+  final Task task;        // a variable ??
   TaskScreen(this.task);
   @override
   _TaskScreenState createState() => _TaskScreenState();
@@ -99,6 +98,8 @@ class _TaskScreenState extends State<TaskScreen> {
                 SizedBox(
                   height: 10.0,
                 ),
+
+                // start of radiobutton 
                 Center(
                   child: Text(
                     'Select Task Type:',

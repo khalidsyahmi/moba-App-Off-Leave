@@ -16,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Task> items;
-  FirestoreService fireServ = new FirestoreService();
+  FirestoreService fireServ = new FirestoreService();  // the service ?
   StreamSubscription<QuerySnapshot> todoTasks;
 
   @override
@@ -45,11 +45,11 @@ class _MyHomePageState extends State<MyHomePage> {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: <Widget>[
-          _myAppBar(context),
+          _myAppBar(context), // returns appbar function
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height - 80,
-            child: ListView.builder(
+            child: ListView.builder(                              // the listbuilder for tiles in homescreen
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return Stack(children: <Widget>[
@@ -72,9 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+
                                     children: <Widget>[
-                                      todoType('${items[index].tasktype}'),
-                                      Text(
+                                      todoType('${items[index].tasktype}'),     // returns icons
+                                      Text(                               
                                         '${items[index].taskname}',
                                         style: TextStyle(
                                             color: Colors.black,

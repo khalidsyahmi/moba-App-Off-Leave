@@ -22,7 +22,7 @@ class DatabaseService {
     });
   }
 
-  //Leave.dart list from snapshot
+  //Leave.dart list from snapshot in firestore
   List<Leave> _leaveListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return Leave(
@@ -49,7 +49,7 @@ class DatabaseService {
     .map(_leaveListFromSnapshot);
   }
 
-  //get user doc stream
+  //get user doc stream // only return uid ??
   Stream<UserData> get userData {
     return leaveCollection.document(uid).snapshots()
     .map(_userDataFromSnapShot);

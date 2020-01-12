@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:offleaveppkt/model/profile.dart';
+// import 'package:offleaveppkt/model/profile.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:offleaveppkt/services/authenticate.dart';
-import 'package:offleaveppkt/model/user.dart';
+// import 'package:offleaveppkt/model/user.dart';
  
 class CrudMedthods {    //similar to databseservice{} classes
 
@@ -33,38 +33,55 @@ class CrudMedthods {    //similar to databseservice{} classes
     }
   }
 
- //Leave.dart list from snapshot
-  List<Profile> _leaveListFromSnapshot(QuerySnapshot snapshot){
-    return snapshot.documents.map((doc){
-      return Profile(
-        name: doc.data['name'] ?? '',
-        color: doc.data['color'] ?? '-',
-
-      );
-    }).toList();
+  //read data
+  getData() async {
+    return await Firestore.instance.collection('profile_Info').getDocuments();
   }
 
-  //userdata.dart from snapshots
-  UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
-    return UserData(
-      uid: uid,
-    );
-  }
-
-  //get leave stream
-  Stream<List<Profile>> get leave {
-    return profileCollection.snapshots()
-    .map(_leaveListFromSnapshot);
-  }
-
-  //get user doc stream
-  Stream<UserData> get userData {
-    return profileCollection.document(uid).snapshots()
-    .map(_userDataFromSnapShot);
-  }
-
-
-
-
-
+  updataData(selectedDoc, newValues) {
+      Firestore.instance.collection('profile_Info').document(selectedDoc).updateData(newValues).catchError((onError){
+        print(onError);
+      });
+  } 
 }
+
+
+
+
+//  //Leave.dart list from snapshot
+//   List<Profile> _profileListFromSnapshot(QuerySnapshot snapshot){
+//     return snapshot.documents.map((doc){
+//       return Profile(
+//         name: doc.data['name'] ?? '',
+//         color: doc.data['color'] ?? '-',
+
+//       );
+//     }).toList();
+//   }
+
+//   //userdata.dart from snapshots
+//   UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
+//     return UserData(
+//       uid: uid,
+//       name: snapshot.data['name'],
+//       color: snapshot.data['color'],
+//     );
+//   }
+
+//   //get leave stream
+//   Stream<List<Profile>> get profile {
+//     return profileCollection.snapshots()
+//     .map(_profileListFromSnapshot);
+//   }
+
+//   //get user doc stream
+//   Stream<UserData> get userData {
+//     return profileCollection.document(uid).snapshots()
+//     .map(_userDataFromSnapShot);
+//   }
+
+
+
+
+
+// }

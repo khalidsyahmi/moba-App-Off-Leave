@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:offleaveppkt/services/profile_database.dart';
-import 'package:offleaveppkt/model/user.dart';
-import 'package:provider/provider.dart';
+// import 'package:offleaveppkt/model/user.dart';
+// import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -17,6 +18,8 @@ class _ProfilePageState extends State<ProfilePage> {
   // String uid;
   String namePerson;
   String colorPerson;
+
+  QuerySnapshot cars;
 
   CrudMedthods crudObj = new CrudMedthods();
 
@@ -49,25 +52,28 @@ class _ProfilePageState extends State<ProfilePage> {
               FlatButton(
                 child: Text('Add'),
                 textColor: Colors.blue,
-                onPressed: () {
+                onPressed: () async {
                   Navigator.of(context).pop();
                   crudObj.addData({
                     'name': this.namePerson,
                     'color': this.colorPerson
 
-                        // if (_formKey.currentState.validate()) {
-                        //   await DatabaseService2(uid: user.uid).updateUserData(
-                        //     _currentMotive ?? userData.motive,
-                        //     _currentDate2 ?? userData.date2,
-                        //     _currentTime2 ?? userData.time2
-                        //   );
-
-                  }).then((result) {
-                    dialogTrigger(context);
-                  }).catchError((e) {
-                    print(e);
-                  });
-                },
+                        // if (_sheetKey.currentState.validate()) {
+                        //   var userData;
+                        //   var user;
+                        //     await CrudMedthods(uid: user.uid).addData(
+                        //     namePerson ?? userData.name,
+                        //     colorPerson ?? userData.color,
+                        //     // _currentTime2 ?? userData.time2
+                        //   )
+                  })
+                    .then((result) {
+                      dialogTrigger(context);
+                    }).catchError((e) {
+                      print(e);
+                    });
+                  }
+                
               )
             ],
           );
@@ -95,14 +101,26 @@ class _ProfilePageState extends State<ProfilePage> {
         });
   }
 
+
+  @override
+  void initState() {
+    crudObj.getData().then((results) {
+      setState(() {
+        cars = results;
+      });
+    });
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
-  final user = Provider.of<User>(context);
+  // final user = Provider.of<User>(context);
 
-    return StreamBuilder<UserData>(
-      stream: CrudMedthods(uid: user.uid).userData,
-      builder: (context, snapshot) {
+    // return StreamBuilder<UserData>(
+    //   stream: CrudMedthods(uid: user.uid).userData,
+    //   builder: (context, snapshot) {
 
         //UserData userData = snapshot.data;
 
@@ -118,8 +136,28 @@ class _ProfilePageState extends State<ProfilePage> {
                 )
               ],
             ),
-            body: Center());
+            body: _carList());
       }
-    );
+    // );
+  // }
+
+    Widget _carList() {
+    if (cars != null) {
+      return ListView.builder(
+        itemCount: cars.documents.length,
+        padding: EdgeInsets.all(5.0),
+        itemBuilder: (context, index) {
+          return new ListTile(
+            title: Text(cars.documents[index].data['name']),
+            subtitle: Text(cars.documents[index].data['color']),
+          );
+        },
+      );
+    } else {
+      return Text('Loading, Please wait..');
+    }
   }
-}
+
+}//end of profile page
+
+

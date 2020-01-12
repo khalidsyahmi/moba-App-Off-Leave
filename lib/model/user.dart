@@ -18,5 +18,14 @@ class UserData {
   final String date2;
   final String time2;
 
-  UserData({ this.uid, this.reason, this.date, this.time, this.motive, this.date2, this.time2 });
+  //profile
+  final String name;
+  final String color;
+
+  UserData({ 
+  this.uid, this.reason, this.date, this.time, 
+  this.motive, this.date2, this.time2,
+  this.color, this.name 
+  
+  });
 }
