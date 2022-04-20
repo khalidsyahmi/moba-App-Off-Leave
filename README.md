@@ -1,4 +1,9 @@
-# offleaveppkt
+# offLeavePPKT
+
+#Introduction
+Planned to be created again with a new version from the ground up with better coding methods and replaced framework. No longer functional from lack of maitenance.
+
+This is a project for Internship in 2019.
 
 A new Flutter project.
 
